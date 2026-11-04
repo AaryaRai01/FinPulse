@@ -1,0 +1,144 @@
+{
+  "project": "FinPulse India",
+  "subtitle": "Household Financial Vulnerability State Tracking",
+  "dataset": {
+    "name": "Consumer Pyramid Household Survey (CPHS) analytical dataset",
+    "study": "Impact of Microcredit on Multidimensional Poverty and Vulnerability in India",
+    "authors": [
+      "Rasmita Maharana",
+      "Tara Shankar Shaw"
+    ],
+    "years": [
+      2016,
+      2017,
+      2018,
+      2019
+    ],
+    "original_records": 47437,
+    "eligible_observations": 21679,
+    "sequence_segments": 9669,
+    "households_in_inference": 9669
+  },
+  "training": {
+    "algorithm": "Gaussian Hidden Markov Model",
+    "implementation": "hmmlearn GaussianHMM",
+    "hidden_states": 3,
+    "covariance_type": "tied",
+    "features": [
+      "MDPS",
+      "VMDPS",
+      "dep_rate"
+    ],
+    "training_sequences": 2000,
+    "training_observations": 4436,
+    "iterations": 49,
+    "converged": true,
+    "inference_method": "Viterbi decoding",
+    "posterior_method": "Forward-Backward posterior probabilities",
+    "random_state": 42
+  },
+  "state_labels": {
+    "0": "Intermediate MDPS\u2013VMDPS profile",
+    "1": "Higher MDPS\u2013VMDPS profile",
+    "2": "Lower MDPS\u2013VMDPS profile"
+  },
+  "state_distribution": [
+    {
+      "state": "State 0",
+      "stateId": 0,
+      "observations": 6936,
+      "percentage": 31.99,
+      "profile": "Intermediate MDPS\u2013VMDPS profile"
+    },
+    {
+      "state": "State 1",
+      "stateId": 1,
+      "observations": 4455,
+      "percentage": 20.55,
+      "profile": "Higher MDPS\u2013VMDPS profile"
+    },
+    {
+      "state": "State 2",
+      "stateId": 2,
+      "observations": 10288,
+      "percentage": 47.46,
+      "profile": "Lower MDPS\u2013VMDPS profile"
+    }
+  ],
+  "state_profiles": [
+    {
+      "stateId": 0,
+      "label": "Intermediate MDPS\u2013VMDPS profile",
+      "MDPS": 0.18229,
+      "VMDPS": 0.35039,
+      "dep_rate": 0.27089,
+      "count": 6936
+    },
+    {
+      "stateId": 1,
+      "label": "Higher MDPS\u2013VMDPS profile",
+      "MDPS": 0.29816,
+      "VMDPS": 0.55339,
+      "dep_rate": 0.33228,
+      "count": 4455
+    },
+    {
+      "stateId": 2,
+      "label": "Lower MDPS\u2013VMDPS profile",
+      "MDPS": 0.12273,
+      "VMDPS": 0.17269,
+      "dep_rate": 0.29424,
+      "count": 10288
+    }
+  ],
+  "annual_distribution": [
+    {
+      "year": 2016,
+      "state0": 25.23,
+      "state1": 52.77,
+      "state2": 21.99
+    },
+    {
+      "year": 2017,
+      "state0": 22.67,
+      "state1": 41.55,
+      "state2": 35.78
+    },
+    {
+      "year": 2018,
+      "state0": 34.87,
+      "state1": 11.98,
+      "state2": 53.16
+    },
+    {
+      "year": 2019,
+      "state0": 37.13,
+      "state1": 6.62,
+      "state2": 56.25
+    }
+  ],
+  "transition_matrix": [
+    [
+      0.7136,
+      0.0451,
+      0.2413
+    ],
+    [
+      0.4528,
+      0.4396,
+      0.1076
+    ],
+    [
+      0.064,
+      0.0064,
+      0.9296
+    ]
+  ],
+  "limitations": [
+    "Inference includes 21,679 eligible household-year observations from consecutive multi-year sequence segments, not all 47,437 original records.",
+    "The tied-covariance model was trained on a sampled subset of 2,000 sequence segments containing 4,436 observations, then used to infer states for all eligible observations.",
+    "Hidden states are exploratory model-inferred profiles, not independently verified poverty classifications.",
+    "The dataset does not provide monthly loan repayment histories or explicit loan-default labels; this project does not predict loan default.",
+    "The analysis does not establish that microcredit caused changes in household vulnerability."
+  ]
+}
